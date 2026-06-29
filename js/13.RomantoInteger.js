@@ -13,13 +13,15 @@ var romanToInt = function (s) {
     M: 1000,
   };
   const map = new Map();
-  let result = 0
+  let result = 0;
   for (let i = s.length - 1; i >= 0; i--) {
     map.set(s[i], values[s[i]]);
-    result = map.get(s[i]) + result
-
-
+    if (values[s[i]] > values[s[i + 1]]) {
+      result = map.get(s[i]) + result;
+    } else {
+      result = map.get(s[i]) - result;
+    }
   }
   console.log("result", result);
 };
-romanToInt("MCMXCIV");
+romanToInt("LVIII");
